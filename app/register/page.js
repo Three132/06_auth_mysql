@@ -29,57 +29,49 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="split">
-      <div className="split-intro">
-        <p className="eyebrow">01 — Register</p>
-        <h1>
-          Join the <em>club.</em>
-        </h1>
-        <p>Your password is stored as a bcrypt hash, never as plain text.</p>
-      </div>
-      <div className="auth-box">
-        <h2>Create account</h2>
-        <form onSubmit={handleRegister}>
-          <div className="field">
-            <label htmlFor="fullname">Full name</label>
-            <input
-              id="fullname"
-              value={fullname}
-              onChange={(event) => setFullname(event.target.value)}
-              placeholder="Full name"
-              required
-            />
-          </div>
-          <div className="field">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="you@example.com"
-              required
-            />
-          </div>
-          <div className="field">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="At least 6 characters"
-              minLength={6}
-              required
-            />
-          </div>
-          <button type="submit">Register</button>
-        </form>
-        {message && <p className="error">{message}</p>}
-        <p className="switch">
-          Already have an account? <Link href="/login">Login</Link>
-        </p>
-      </div>
+    <div className="auth-box">
+      <h1>Register</h1>
+      <p className="subtitle">Create an account to open the dashboard.</p>
+      <form onSubmit={handleRegister}>
+        <div className="field">
+          <label htmlFor="fullname">Full name</label>
+          <input
+            id="fullname"
+            value={fullname}
+            onChange={(event) => setFullname(event.target.value)}
+            placeholder="Full name"
+            required
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="At least 6 characters"
+            minLength={6}
+            required
+          />
+        </div>
+        <button type="submit">Register</button>
+      </form>
+      {message && <p className="error">{message}</p>}
+      <p className="switch">
+        Already have an account? <Link href="/login">Login</Link>
+      </p>
     </div>
   );
 }

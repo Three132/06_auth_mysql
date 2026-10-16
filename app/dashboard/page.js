@@ -23,28 +23,26 @@ export default function DashboardPage() {
   }
 
   return (
-    <section className="dashboard">
-      <p className="eyebrow">03 — Dashboard</p>
-      <h1>
-        Hello, <em>{user.fullname}.</em>
-      </h1>
-      <dl className="info">
-        <div>
-          <dt>Full name</dt>
-          <dd>{user.fullname}</dd>
-        </div>
-        <div>
-          <dt>Email</dt>
-          <dd>{user.email}</dd>
-        </div>
-        <div>
-          <dt>Member ID</dt>
-          <dd>{user.id}</dd>
-        </div>
-      </dl>
-      <button className="button-ghost" onClick={handleLogout}>
-        Logout
-      </button>
-    </section>
+    <div className="auth-box">
+      <h1>Dashboard</h1>
+      <p className="subtitle">Welcome, {user.fullname}</p>
+      <table className="info">
+        <tbody>
+          <tr>
+            <th>Full name</th>
+            <td>{user.fullname}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{user.email}</td>
+          </tr>
+          <tr>
+            <th>Member ID</th>
+            <td>{user.id}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
   );
 }
