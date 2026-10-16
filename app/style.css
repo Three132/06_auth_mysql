@@ -1,42 +1,394 @@
-/* app/style.css — base styles shared by the auth pages */
-body {
-  font-family: sans-serif;
-  padding: 20px;
-  background: #f5f6f8;
+/* app/style.css — shared styles for every auth page */
+:root {
+  --paper: #f2efe8;
+  --ink: #141414;
+  --muted: #6b6760;
+  --line: #d9d4c9;
+  --accent: #ff4f1f;
+  --white: #fbfaf7;
+  --danger: #c4261b;
 }
 
-/* white box centered on the screen, used on every page */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body), system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+a {
+  color: inherit;
+}
+
+/* big serif headings */
+h1,
+.display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* top bar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 32px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.brand {
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.brand span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  font-size: 0.9rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+main {
+  flex: 1;
+  display: flex;
+}
+
+/* footer with the student credit */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 32px;
+  border-top: 1px solid var(--ink);
+  font-size: 0.85rem;
+}
+
+.footer span:last-child {
+  color: var(--muted);
+}
+
+/* small uppercase label above headings */
+.eyebrow {
+  margin: 0 0 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* two-column page: text on the left, form on the right */
+.split {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+}
+
+.split-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px 32px;
+  border-right: 1px solid var(--ink);
+}
+
+.split-intro h1 {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.95;
+}
+
+.split-intro h1 em {
+  color: var(--accent);
+}
+
+.split-intro p {
+  max-width: 34ch;
+  margin: 24px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* form column, used by register and login */
 .auth-box {
-  max-width: 360px;
-  margin: 40px auto;
-  padding: 24px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  padding: 48px 32px;
+}
+
+.auth-box h2 {
+  margin: 0 0 32px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 24px;
 }
 
-input,
-button {
-  padding: 10px;
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+input {
+  padding: 10px 0;
   font: inherit;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  font-size: 1.05rem;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  transition: border-color 0.2s;
+}
+
+input::placeholder {
+  color: #aaa59b;
+}
+
+input:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
 }
 
 button {
-  background: #00758f;
-  border-color: #00758f;
-  color: #fff;
+  margin-top: 8px;
+  padding: 16px 20px;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  color: var(--white);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 0;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+button::after {
+  content: "→";
+}
+
+button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.button-ghost {
+  color: var(--ink);
+  background: transparent;
+}
+
+.button-ghost:hover {
+  color: var(--white);
 }
 
 /* error message below the form */
 .error {
-  color: #c0392b;
+  margin: 20px 0 0;
+  padding-left: 12px;
+  border-left: 3px solid var(--danger);
+  color: var(--danger);
+  font-size: 0.92rem;
+}
+
+.switch {
+  margin: 32px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.switch a {
+  color: var(--ink);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+/* home page */
+.home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 32px 0;
+}
+
+.home h1 {
+  margin: 0 0 48px;
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  line-height: 0.92;
+}
+
+.home h1 em {
+  color: var(--accent);
+}
+
+.menu {
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+
+.menu a {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--ink);
+  text-decoration: none;
+  transition: padding 0.25s, color 0.25s;
+}
+
+.menu a:hover {
+  padding-left: 12px;
+  color: var(--accent);
+}
+
+.menu .num {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.menu .title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.menu .note {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* dashboard */
+.dashboard {
+  flex: 1;
+  padding: 48px 32px;
+}
+
+.dashboard h1 {
+  margin: 0 0 48px;
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  line-height: 0.95;
+}
+
+.dashboard h1 em {
+  color: var(--accent);
+}
+
+.info {
+  max-width: 720px;
+  margin: 0 0 40px;
+  border-top: 1px solid var(--ink);
+}
+
+.info div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.info dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.info dd {
+  margin: 0;
+  font-size: 1.1rem;
+  word-break: break-all;
+}
+
+.dashboard button {
+  min-width: 220px;
+}
+
+.loading {
+  margin: auto;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .navbar,
+  .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .split-intro {
+    padding: 40px 20px 32px;
+    border-right: none;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .auth-box,
+  .home,
+  .dashboard {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .menu a {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .menu .note {
+    display: none;
+  }
+
+  .info div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 4px;
+  }
 }

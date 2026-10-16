@@ -27,29 +27,46 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="auth-box">
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-      {message && <p className="error">{message}</p>}
-      <p>
-        No account yet? <Link href="/register">Register</Link>
-      </p>
+    <div className="split">
+      <div className="split-intro">
+        <p className="eyebrow">02 — Login</p>
+        <h1>
+          Welcome <em>back.</em>
+        </h1>
+        <p>Signing in gives you a token in an httpOnly cookie for one hour.</p>
+      </div>
+      <div className="auth-box">
+        <h2>Sign in</h2>
+        <form onSubmit={handleLogin}>
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Your password"
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        {message && <p className="error">{message}</p>}
+        <p className="switch">
+          No account yet? <Link href="/register">Register</Link>
+        </p>
+      </div>
     </div>
   );
 }

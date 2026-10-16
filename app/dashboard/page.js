@@ -19,15 +19,32 @@ export default function DashboardPage() {
   };
 
   if (!user) {
-    return <p>Loading...</p>;
+    return <p className="loading">Loading...</p>;
   }
 
   return (
-    <div className="auth-box">
-      <h1>Dashboard</h1>
-      <p>Welcome, {user.fullname}</p>
-      <p>Email: {user.email}</p>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    <section className="dashboard">
+      <p className="eyebrow">03 — Dashboard</p>
+      <h1>
+        Hello, <em>{user.fullname}.</em>
+      </h1>
+      <dl className="info">
+        <div>
+          <dt>Full name</dt>
+          <dd>{user.fullname}</dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd>{user.email}</dd>
+        </div>
+        <div>
+          <dt>Member ID</dt>
+          <dd>{user.id}</dd>
+        </div>
+      </dl>
+      <button className="button-ghost" onClick={handleLogout}>
+        Logout
+      </button>
+    </section>
   );
 }
